@@ -24,17 +24,15 @@ class CaixaDaLanchonete {
                         calculo = Number.parseFloat(lista[i][2]).toFixed(2);
                         switch (metodoDePagamento) {
                             case "dinheiro" :
-                                calculo = (calculo - calculo/20); 
-                                var virgulando = calculo.replace(".", ",");                              
+                                calculo = calculo - calculo/20;                                                              
                                 break;                                
                             case "credito" :
-                                calculo = 103/100*calculo;
-                                var virgulando = calculo.replace(".", ",");                               
+                                calculo = 103/100*calculo;                                                               
                                 break;
-                            case "debito" :
-                                var virgulando = calculo.replace(".", ",");
+                            case "debito" :                                
                                 break                            
                         }
+                        var virgulando = calculo.replace(".", ",");
                         console.log(virgulando);                        
                     }                                        
                 }
