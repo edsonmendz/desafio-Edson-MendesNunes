@@ -16,6 +16,7 @@ class CaixaDaLanchonete {
         var string = 0;
         var laco = '';
         var compra = "";
+        var comparador = false;
 
         
         if (metodoDePagamento == "dinheiro" || metodoDePagamento == "debito" || metodoDePagamento == "credito") {
@@ -28,7 +29,14 @@ class CaixaDaLanchonete {
                     for (i = 0 ; i < lista.length; i++) {
                         if (compra[0] == lista[i][0]) {
                             calculo = compra[1]*lista[i][2];
-                        }                        
+                            comparador = true;
+                            if ( compra[1] == 0 ) {
+                                return "Quantidade inválida!";
+                            }
+                        }                      
+                    }
+                    if (comparador == false ) {
+                        return 'Item inválido!';
                     }
                     calculo = Number(calculo);
                     soma = Number(soma);
@@ -53,8 +61,7 @@ class CaixaDaLanchonete {
             resultado = "Forma de pagamento inválida!";
         }
 
-        return resultado;
+        return resultado;          
     } 
 }
-
 export { CaixaDaLanchonete };
