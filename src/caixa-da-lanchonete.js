@@ -14,43 +14,41 @@ class CaixaDaLanchonete {
         var valor = '';
         var soma = '';
         var string = 0;
-        var laco = itens.toString();
-        var compra = laco.split(",");
+        var laco = '';
+        var compra = "";
 
         
         if (metodoDePagamento == "dinheiro" || metodoDePagamento == "debito" || metodoDePagamento == "credito") {
             if ( itens == "") {
                 resultado = "Não há itens no carrinho de compra!";
-            }else{
-                
-                for (y = 0; y < itens.length; y = y + 1) {
-                    for (i = 0; i < lista.length; i = i + 1 ) {                    
+            }else{                
+                for (y = 0; y < itens.length; y++) {
+                    laco = itens[y];
+                    compra = laco.split(",");
+                    for (i = 0 ; i < lista.length; i++) {
                         if (compra[0] == lista[i][0]) {
-                            calculo = Number.parseFloat(lista[i][2]).toFixed(2);
-    
-                            switch (metodoDePagamento) {
-                                case "dinheiro" :
-                                    calculo = calculo - calculo/20;                                                              
-                                    break;                                
-                                case "credito" :
-                                    calculo = 103/100*calculo;                                                               
-                                    break;
-                                case "debito" :
-                                    break;
-                            }
-                                                                            
+                            calculo = compra[1]*lista[i][2];
                         }                        
                     }
                     calculo = Number(calculo);
                     soma = Number(soma);
-                    soma = soma + calculo;                    
-                    console.log(typeof soma);
+                    soma = soma + calculo;
+                }
+                switch (metodoDePagamento) {
+                    case "dinheiro" :
+                        soma = soma - soma/20;                                                              
+                        break;                                
+                    case "credito" :
+                        soma = 103/100*soma;                                                               
+                        break;
+                    case "debito" :
+                        break;
                 }
                 soma = parseFloat(soma).toFixed(2);
                 string = soma.toString();
                 valor = string.replace(".", ",");
                 resultado = rs + valor;
-            }
+            }                  
         } else {
             resultado = "Forma de pagamento inválida!";
         }
