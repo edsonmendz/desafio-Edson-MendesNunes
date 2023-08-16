@@ -17,6 +17,11 @@ class CaixaDaLanchonete {
         var laco = '';
         var compra = "";
         var comparador = false;
+        var cafe = false;
+        var chantily = false;
+        var sanduiche = false;
+        var queijo = false;
+
 
         
         if (metodoDePagamento == "dinheiro" || metodoDePagamento == "debito" || metodoDePagamento == "credito") {
@@ -33,6 +38,18 @@ class CaixaDaLanchonete {
                             if ( compra[1] == 0 ) {
                                 return "Quantidade inválida!";
                             }
+                            if ( compra[0] == "cafe") {
+                                cafe = true
+                            }
+                            if ( compra[0] == "chantily") {
+                                chantily = true
+                            }
+                            if ( compra[0] == "sanduiche") {
+                                sanduiche = true
+                            }
+                            if ( compra[0] == "queijo") {
+                                queijo = true
+                            }
                         }                      
                     }
                     if (comparador == false ) {
@@ -41,6 +58,9 @@ class CaixaDaLanchonete {
                     calculo = Number(calculo);
                     soma = Number(soma);
                     soma = soma + calculo;
+                }
+                if ( chantily == true && cafe == false || queijo == true && sanduiche == false) {
+                    return 'Item extra não pode ser pedido sem o principal';
                 }
                 switch (metodoDePagamento) {
                     case "dinheiro" :
